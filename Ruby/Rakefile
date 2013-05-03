@@ -14,7 +14,7 @@ end
 desc "builds a gem"
 task :build => :update_asset_version do
   Dir.chdir("..") do
-    `gem build rack-mini-profiler.gemspec 1>&2 && mv *.gem Ruby/`
+    `gem build mini-mini-profiler.gemspec 1>&2 && mv *.gem Ruby/`
   end
 end
 
