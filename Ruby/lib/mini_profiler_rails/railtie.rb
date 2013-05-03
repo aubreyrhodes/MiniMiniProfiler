@@ -38,8 +38,26 @@ module Rack::MiniProfilerRails
     app.middleware.insert(0, Rack::MiniProfiler)
 
     # Attach to various Rails methods
-    ::Rack::MiniProfiler.profile_method(ActionController::Base, :process) {|action| "Executing action: #{action}"}
-    ::Rack::MiniProfiler.profile_method(ActionView::Template, :render) {|x,y| "Rendering: #{@virtual_path}"}
+    ::Rack::MiniProfiler.profile_method(ActionController::Base, :process) {|action| "Controller: #{self.class.name} Action: #{action}"}
+    ::Rack::MiniProfiler.profile_method(ActionView::Template, :render) {|x,y| "View: #{@virtual_path}"}
+
+    # preload all model classes
+    Dir.glob("#{Rails.root}/app/models/**/*.rb").map{|file| file.match(/([^\/]+).rb/)[1].camelize.constantize}
+
+    ActiveRecord::Base.subclasses.each do |model_class|
+      (model_class.instance_methods - ActiveRecord::Base.instance_methods + [:save, :update_attributes, :initialize]).each do |method|
+        # ::Rack::MiniProfiler.profile_method(model_class, method){ |*args| "Model: #{self.class.name} Method: #{method}" }
+        unless method.to_s =~ /^_.*/
+          ::Rack::MiniProfiler.profile_method(model_class, method){ |*args| "Model: #{ self.class.name } Method: #{ method }" }
+        end
+      end
+
+      ((model_class.public_methods - ActiveRecord::Base.public_methods) + [:find, :where, :order, :all]).each do |method|
+        unless method.to_s =~ /^_.*/
+          ::Rack::MiniProfiler.profile_method(model_class, method, true){ |*args| "Model: #{ self.name } Method: #{ method }" }
+        end
+      end
+    end
   end
 
   class Railtie < ::Rails::Railtie

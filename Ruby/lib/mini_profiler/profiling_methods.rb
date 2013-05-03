@@ -55,12 +55,14 @@ module Rack
         end
       end
 
-      def profile_method(klass, method, &blk)
+      def profile_method(klass, method, instance_method = false, &blk)
         default_name = klass.to_s + " " + method.to_s
         clean = clean_method_name(method)
 
         with_profiling =  ("#{clean}_with_mini_profiler").intern
         without_profiling = ("#{clean}_without_mini_profiler").intern
+
+        klass = ( class << klass; self; end ) if instance_method
 
         if klass.send :method_defined?, with_profiling
           return # dont double profile

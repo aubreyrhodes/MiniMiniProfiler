@@ -323,6 +323,7 @@
 }
 .profiler-results .profiler-popup {
   display: none;
+  min-width: 220px;
   z-index: 2147483641;
   position: absolute;
   background-color: #fff;
