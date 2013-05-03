@@ -1,11 +1,17 @@
-This official clone of Mini Profiler
+MiniMini Profiler is a port of Mini Profiler that is aimed a beginning rails programmers.
 
-We accept patches and pull requests here. 
+To install add the following to your gemfile and then run the `bundle` command:
 
-See the home page at: http://miniprofiler.com
+```
+gem 'mini-mini-profiler', :require => 'rack-mini-profiler' 
+```
 
-Docs for the ruby version can be found here: https://github.com/SamSaffron/MiniProfiler/tree/master/Ruby
+And add the following to `ApplicationController` in `app/controllers/application_controller.rb`
 
-Licensed under apache 2.0 license, see: http://www.apache.org/licenses/LICENSE-2.0
+```ruby
+before_filter :setup_profiler                                                                                                                                                                                                                                                      
 
-For bugs and feature requests go to: http://community.miniprofiler.com
+def setup_profiler
+  Rack::MiniProfiler.authorize_request
+end
+```
