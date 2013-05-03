@@ -1,7 +1,7 @@
 PATH
   remote: /Users/aubrey/Code/MiniProfiler
   specs:
-    mini-mini-profiler (0.1)
+    mini-mini-profiler (0.1.1)
       rack (>= 1.1.3)
 
 GEM

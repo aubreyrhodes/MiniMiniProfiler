@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
 	s.name = "mini-mini-profiler"
-	s.version = "0.1"
+	s.version = "0.1.1"
 	s.summary = "Simple Profiler for learning about Rails Development"
 	s.authors = ["Aubrey Rhodes"]
 	s.description = "Simple Profiler for learning about Rails Development"
