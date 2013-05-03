@@ -1,13 +1,13 @@
 Gem::Specification.new do |s|
-	s.name = "rack-mini-profiler"
-	s.version = "0.1.26"
-	s.summary = "Profiles loading speed for rack applications."
-	s.authors = ["Sam Saffron", "Robin Ward","Aleks Totic"]
-	s.description = "Profiling toolkit for Rack applications with Rails integration. Client Side profiling, DB profiling and Server profiling."
-	s.email = "sam.saffron@gmail.com"
-	s.homepage = "http://miniprofiler.com"
+	s.name = "mini-mini-profiler"
+	s.version = "0.1"
+	s.summary = "Simple Profiler for learning about Rails Development"
+	s.authors = ["Aubrey Rhodes"]
+	s.description = "Simple Profiler for learning about Rails Development"
+	s.email = "aubrey.c.rhodes@gmail.com"
+	s.homepage = "https://github.com/aubreyrhodes/MiniMiniProfiler"
 	s.files = [
-		'rack-mini-profiler.gemspec',
+		'mini-mini-profiler.gemspec',
 	].concat( Dir.glob('Ruby/lib/**/*').reject {|f| File.directory?(f) || f =~ /~$/ } )
 	s.extra_rdoc_files = [
 		"Ruby/README.md",
