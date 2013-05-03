@@ -1,4 +1,4 @@
-MiniMini Profiler is a port of Mini Profiler that is aimed a beginning rails programmers.
+MiniMini Profiler is a fork of Mini Profiler that is aimed a beginning rails programmers.
 
 To install add the following to your gemfile and then run the `bundle` command:
 
